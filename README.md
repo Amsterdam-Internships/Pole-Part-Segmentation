@@ -1,7 +1,5 @@
 # Pole-Part-Segmentation
 
-![Intro figure](https://github.com/HuguesTHOMAS/KPConv/blob/master/doc/Github_intro.png)
-
 Created by Sara Yousefimashhoor as the extension of Hugues THOMAS Deep learning Algorithm (KPConv)
 
 ## Introduction
@@ -11,7 +9,7 @@ This repository contains the implementation of **Kernel Point Convolution** (KPC
 to decompose pole-like objects to its constituent parts (carrier and different attachments). 
 
 
-![Intro figure]()
+![Intro figure](https://github.com/Amsterdam-Internships/Pole-Part-Segmentation/blob/master/Picture1.png)
 
 
 ## Installation
