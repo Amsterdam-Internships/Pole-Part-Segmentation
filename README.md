@@ -19,10 +19,10 @@ A step-by-step installation guide for Ubuntu 16.04 is provided in [INSTALL.md](.
 
 ## Achieved Milestones
 
-•	Feeding the municipality's custom dataset to a publicly available deep learning algorithm (KPConv) and introducing a new 'pole' class to the model. 
-•	Debugging the KPConv codes for the part-segmentation task.
-•	Including additional features in the training and testing pipeline(RGB and intensity values)
-•	Fine-tuning a selection of parameters 
+•	Feeding the municipality's custom dataset to a publicly available deep learning algorithm (KPConv) and introducing a new 'pole' class to the model. <br />
+•	Debugging the KPConv codes for the part-segmentation task.<br />
+•	Including additional features in the training and testing pipeline(RGB and intensity values)<br />
+•	Fine-tuning a selection of parameters <br />
 •	Improving the model performance
 
  
