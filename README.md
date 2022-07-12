@@ -1,12 +1,7 @@
-# Pole-Part-Segmentation
+# Part Segmentation of Pole-like Objects
 
-This repository contains the code, the model, and the data to decompose the pole-like objects to their constituent part (pole-like objects part segmentation). The repository is created by Sara Yousefimashhoor as the extension of Hugues THOMAS Deep learning Algorithm (KPConv).
-
-## Introduction
-
-
-This repository contains the implementation of **Kernel Point Convolution** (KPConv), a point convolution operator 
-to decompose pole-like objects to its constituent parts (carrier and different attachments). 
+This repository contains the implementation of **Kernel Point Convolution** (KPConv) to decompose the pole-like objects to their constituent part (the carrier and different attachments) or as we call it part segmentation of the pole-like objects. Based on our custom labeled data, 
+The repository is created by Sara Yousefimashhoor as the extension of Hugues THOMAS Deep learning Algorithm (KPConv).
 
 
 ![Intro figure](https://github.com/Amsterdam-Internships/Pole-Part-Segmentation/blob/master/Picture1.png)
