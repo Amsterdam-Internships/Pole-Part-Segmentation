@@ -1,6 +1,6 @@
 # Pole-Part-Segmentation
 
-Created by Sara Yousefimashhoor as the extension of Hugues THOMAS Deep learning Algorithm (KPConv)
+This repository contains the code, the model, and the data to decompose the pole-like objects to their constituent part (pole-like objects part segmentation). The repository is created by Sara Yousefimashhoor as the extension of Hugues THOMAS Deep learning Algorithm (KPConv).
 
 ## Introduction
 
@@ -14,7 +14,7 @@ to decompose pole-like objects to its constituent parts (carrier and different a
 
 ## Installation
 
-A step-by-step installation guide for Ubuntu 16.04 is provided in [INSTALL.md](./INSTALL.md). 
+A step-by-step installation guide for Ubuntu 20 is provided in [INSTALL.md](./INSTALL.md). 
 
 
 ## Achieved Milestones
