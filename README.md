@@ -67,7 +67,7 @@ The results of different experiments are shown in the table below. The mIoU valu
 
 Our code is based on KPConv algorithm [KPConv](https://github.com/HuguesTHOMAS/KPConv). You can read more about the algorithm [here](https://arxiv.org/abs/1904.08889) <br />
 Our data provider is [Cyclomedia](https://www.cyclomedia.com/nl). <br />
-To track the model trainings [wandb](https://wandb.ai/home) is used. <br />
+To track the experiments [wandb](https://wandb.ai/home) dashboard is used. <br />
 
 
 
