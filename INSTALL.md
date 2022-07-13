@@ -37,3 +37,9 @@ You should now be able to train Kernel-Point Convolution models
 * Change the `-D_GLIBCXX_USE_CXX11_ABI=0` flag for each line in `tf_custom_ops/compile_op.sh` to `-D_GLIBCXX_USE_CXX11_ABI=1`
 
 Now you are ready to run any code in KPConv folder.
+
+### Packages Versions Used
+
+| Package | cudatoolkit | cudnn | tensorflow-gpu | Python | NumPy | scikit-learn | PyQt | psutil | 
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Version | 9.0 | 7.6.5 | 1.12.0 | 3.6.13 | 1.19.2 | 0.24.2 | 5.9.2 | 5.9.0 |
