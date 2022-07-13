@@ -54,6 +54,11 @@ After setting up the envionment, follow the steps below: <br />
 
 ### Inference
 
+## How it works
+
+
+
+
 ## Parameter Setting 
 |Argument | Type or Action | Description | Default |
 |---|:---:|:---:|:---:|
