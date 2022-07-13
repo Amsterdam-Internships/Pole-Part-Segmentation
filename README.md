@@ -12,6 +12,20 @@ The main changes to the original code are as follows:<br />
 ![Intro figure](https://github.com/Amsterdam-Internships/Pole-Part-Segmentation/blob/master/Picture1.png)
 
 
+## Project Folder Structure
+
+Explain briefly what's where so people can find their way around. For example:
+
+There are the following folders in the structure:
+
+1) [`resources`](./resources): Random nice resources, e.g. [`useful links`](./resources/README.md)
+1) [`src`](./src): Folder for all source files specific to this project
+1) [`scripts`](./scripts): Folder with example scripts for performing different tasks (could serve as usage documentation)
+1) [`tests`](./tests) Test example
+1) [`media`](./media): Folder containing media files (icons, video)
+1) ...
+
+
 ## Installation
 
 A step-by-step installation guide for Ubuntu 20 is provided in [INSTALL.md](./INSTALL.md). 
