@@ -19,6 +19,12 @@
      - mayavi (for visualization)
      - PyQt5 (for visualization)
      - wandb (for tracking the process)
+
+# Version of Packages used
+
+| Package | cudatoolkit | cudnn | tensorflow-gpu | Python | NumPy | scikit-learn | PyQt | psutil | 
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Version | 9.0 | 7.6.5 | 1.12.0 | 3.6.13 | 1.19.2 | 0.24.2 | 5.9.2 | 5.9.0 |
      
 * Compile the customized Tensorflow operators located in `tf_custom_ops`. Open a terminal in this folder, and run:
 
@@ -38,8 +44,4 @@ You should now be able to train Kernel-Point Convolution models
 
 Now you are ready to run any code in KPConv folder.
 
-### Packages Versions Used
 
-| Package | cudatoolkit | cudnn | tensorflow-gpu | Python | NumPy | scikit-learn | PyQt | psutil | 
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| Version | 9.0 | 7.6.5 | 1.12.0 | 3.6.13 | 1.19.2 | 0.24.2 | 5.9.2 | 5.9.0 |
