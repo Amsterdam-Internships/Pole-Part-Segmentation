@@ -13,17 +13,14 @@ The main changes to the original code are as follows:<br />
 
 
 ## Project Folder Structure
-
-Explain briefly what's where so people can find their way around. For example:
-
-There are the following folders in the structure:
+The repository contains the code, dataset, trained model, and some useful resources and examples of the pipeline, which are structured in the following format:
 
 1) [`resources`](./resources): Random nice resources, e.g. [`useful links`](./resources/README.md)
-1) [`src`](./src): Folder for all source files specific to this project
-1) [`scripts`](./scripts): Folder with example scripts for performing different tasks (could serve as usage documentation)
-1) [`tests`](./tests) Test example
-1) [`media`](./media): Folder containing media files (icons, video)
-1) ...
+1) [`data`](./data): Folder containing sample data for public use
+1) [`KPConv`](./KPConv): Folder containing the code and scripts to run the pipeline
+1) [`model`](./model): Folder containing our best trained model for pole part-segmentation task (including coordinate, intensity and color values)
+3) [`media`](./media): Folder containing media files (icons, video)
+4) ...
 
 
 ## Installation
