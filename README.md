@@ -57,6 +57,6 @@ The following tables report the current performances on different tasks and data
 
 | Method | KPConv (default) | KPConv (debugged) | KPConv (x,y,z,i) |  KPConv (x,y,z,r,g,b) | KPConv (x,y,z,r,g,b,i) |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| KPConv _rigid_      | 36% |  84.4%  |  84.9%  |  84.8%  | 87.5% 
+| KPConv _deformable_      | 36% |  84.4%  |  84.9%  |  84.8%  | 87.5% 
 
 
