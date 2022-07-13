@@ -28,7 +28,9 @@ The repository contains the code, dataset, trained model, and some useful resour
 A step-by-step guide to setup the environment for Ubuntu 20.04 is provided in [INSTALL.md](./INSTALL.md). <br />
 After setting up the envionment, follow the steps below: <br />
 
-#### If you are running the pipeline for a customm dataset:  <br />
+### Training
+
+#### If you are running the pipeline for a custom dataset:  <br />
 
 * Before running the training algorithm, split your data using the stratified split code (stratified_split) This code is reading laz format. Note that for handling .ply files requires some modifications.
 * Prepare the data using Prepare_data_xyzrgbi.py . This code prepares .laz files, saves them as .ply with normalized coordinates, color and intensity values and gives them proper names. 
@@ -43,6 +45,14 @@ After setting up the envionment, follow the steps below: <br />
 * Modify the 'self.path' variable in the ShapenNetPart.py in the ./KPConv/datasets folder to read the point clouds from the Data folder
 * Determine whether the intensity and color values are going to be fed into the model in the training_ShapeNetPart (color_info, intensity_info) and in ./KPConv/utils/config.py.
 * Run the training_ShapeNetPart.py
+
+### Testing
+* Find the trained model (log folder_) in the ./KPConv/results that you want to test and copy the path to it.
+* Assign the file path to the chosen_log variable in ./KPConv/test_any_model.py
+* Make sure that the conda environment (tf-gpu) is activated.
+* Run test_any_model.py
+
+### Inference
 
 ## Performances
 
