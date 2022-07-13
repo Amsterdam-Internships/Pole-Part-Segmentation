@@ -35,19 +35,6 @@ After setting up the envionment, follow the steps below: <br />
 * Determine whether the intensity and color values are going to be fed into the model in the training_ShapeNetPart (color_info, intensity_info) and in ./KPConv/utils/config.py.
 * Run the training_ShapeNetPart.py
 
-# ATTENTION: In all the files you should give the custom path to your modified data in the previous step. 
-
-
-
-## Achieved Milestones
-
-•	Feeding the municipality's custom dataset to a publicly available deep learning algorithm (KPConv) and introducing a new 'pole' class to the model. <br />
-•	Debugging the KPConv codes for the part-segmentation task.<br />
-•	Including additional features in the training and testing pipeline(RGB and intensity values)<br />
-•	Fine-tuning a selection of parameters <br />
-•	Improving the model performance
-
- 
 
 ## Performances
 
