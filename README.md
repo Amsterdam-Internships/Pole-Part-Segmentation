@@ -34,29 +34,29 @@ After setting up the envionment, follow the steps below: <br />
 
 * Before running the training algorithm, split your data using the stratified split code `0 - stratified_split_for_laz.py` in KPConv folder. This code is reading laz format. Note that for handling `.ply` files requires some modifications.
 * Prepare the data using `Prepare_data_xyzrgbi.py` . This code prepares .laz files, saves them as `.ply` with normalized coordinates, color and intensity values and gives them proper names. 
-* Create a Data folder inside the KPConv folder and add the three folders of `train_ply`, `val_ply`, and `test_ply` containing the prepared point clouds to it.
+* Create a `Data` folder inside the `KPConv` folder and add the three folders of `train_ply`, `val_ply`, and `test_ply` containing the prepared point clouds to it.
 * Modify the `self.path` variable in the `./KPConv/datasets/ShapeNetPart.py` to read the point clouds from the Data folder.
 * Determine whether the intensity and color values are going to be fed into the model in the `./KPConv/training_ShapeNetPart.py` and `./KPConv/utils/config.py` by modifying the variables `intensity_info` and `color_info`.
 * Run the `./KPConv/training_ShapeNetPart.py`
 
 #### If you are runnning on our provided dataset: <br />
 
-* Copy the folders inside the 'data' folder to ./KPConv/Data
-* Modify the 'self.path' variable in the ShapenNetPart.py in the ./KPConv/datasets folder to read the point clouds from the Data folder
-* Determine whether the intensity and color values are going to be fed into the model in the training_ShapeNetPart (color_info, intensity_info) and in ./KPConv/utils/config.py.
-* Run the training_ShapeNetPart.py
+* Copy the folders inside the `data` folder to `./KPConv/Data`
+* Modify the `self.path` variable in the `./KPConv/datasets/ShapeNetPart.py` folder to read the point clouds from the `Data` folder.
+* Determine whether the intensity and color values are going to be fed into the model in the `./KPConv/training_ShapeNetPart.py` and `./KPConv/utils/config.py` by modifying the variables `intensity_info` and `color_info`.
+* Run the `./KPConv/training_ShapeNetPart.py`
 
 ### Testing
-* Find the trained model (log folder_) in the ./KPConv/results that you want to test and copy the path to it.
-* Assign the file path to the chosen_log variable in ./KPConv/test_any_model.py
-* Make sure that the conda environment (tf-gpu) is activated.
-* Run test_any_model.py
+* Find the trained model (log folder_) in `./KPConv/results` that you want to test and copy the path to it.
+* Assign the file path to the `chosen_log` variable in `./KPConv/test_any_model.py`
+* Make sure that the conda environment `(tf-gpu)` is activated.
+* Run `test_any_model.py`
 
 ### Inference
 
 ## Performances
 
-The following tables report the current performances on different tasks and datasets. 
+The results of different experiments are shown in the table below. The mIoU values shows that overall using intensity and color values is useful when distinguishing between pole attachments. Particularly, the improvement reflects in distinguishing different types of signs better as they have high reflectivity and distinct colors. 
 
 ### Part Segmentation of Pole-like objects 
 
