@@ -32,12 +32,12 @@ After setting up the envionment, follow the steps below: <br />
 
 #### If you are running the pipeline for a custom dataset:  <br />
 
-* Before running the training algorithm, split your data using the stratified split code (stratified_split) This code is reading laz format. Note that for handling .ply files requires some modifications.
-* Prepare the data using Prepare_data_xyzrgbi.py . This code prepares .laz files, saves them as .ply with normalized coordinates, color and intensity values and gives them proper names. 
-* Create a Data folder inside the KPConv folder and add the three folders of 'train_ply', 'val_ply', and 'test_ply' containing the prepared point clouds to it
-* Modify the 'self.path' variable in the ShapenNetPart.py in the ./KPConv/datasets folder to read the point clouds from the Data folder
-* Determine whether the intensity and color values are going to be fed into the model in the training_ShapeNetPart (color_info, intensity_info) and in ./KPConv/utils/config.py.
-* Run the training_ShapeNetPart.py
+* Before running the training algorithm, split your data using the stratified split code `0 - stratified_split_for_laz.py` in KPConv folder. This code is reading laz format. Note that for handling `.ply` files requires some modifications.
+* Prepare the data using `Prepare_data_xyzrgbi.py` . This code prepares .laz files, saves them as `.ply` with normalized coordinates, color and intensity values and gives them proper names. 
+* Create a Data folder inside the KPConv folder and add the three folders of `train_ply`, `val_ply`, and `test_ply` containing the prepared point clouds to it.
+* Modify the `self.path` variable in the `./KPConv/datasets/ShapeNetPart.py` to read the point clouds from the Data folder.
+* Determine whether the intensity and color values are going to be fed into the model in the `./KPConv/training_ShapeNetPart.py` and `./KPConv/utils/config.py` by modifying the variables `intensity_info` and `color_info`.
+* Run the `./KPConv/training_ShapeNetPart.py`
 
 #### If you are runnning on our provided dataset: <br />
 
