@@ -62,6 +62,6 @@ The results of different experiments are shown in the table below. The mIoU valu
 
 | Method | KPConv (default) | KPConv (debugged) | KPConv (x,y,z,i) |  KPConv (x,y,z,r,g,b) | KPConv (x,y,z,r,g,b,i) |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| KPConv _deformable_      | 36% |  84.4%  |  84.9%  |  84.8%  | 87.5% 
+| mIoU | 36% |  84.4%  |  84.9%  |  84.8%  | 87.5% 
 
 
