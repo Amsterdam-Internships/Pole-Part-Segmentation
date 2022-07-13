@@ -15,12 +15,12 @@
      - numpy
      - scikit-learn
      - psutil
-     - matplotlib (for visualization)
-     - mayavi (for visualization)
-     - PyQt5 (for visualization)
-     - wandb (for tracking the process)
+     - matplotlib (for visualization - optional)
+     - mayavi (for visualization - optional)
+     - PyQt5 (for visualization - optional)
+     - wandb (for tracking the process - optional)
 
-##### Version of Packages used
+#### Version of Packages used
 
 | Package | cudatoolkit | cudnn | tensorflow-gpu | Python | NumPy | scikit-learn | PyQt | psutil | 
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
