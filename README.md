@@ -60,6 +60,14 @@ The results of different experiments are shown in the table below. The mIoU valu
 
 | Method | KPConv (default) | KPConv (debugged) | KPConv (x,y,z,i) |  KPConv (x,y,z,r,g,b) | KPConv (x,y,z,r,g,b,i) |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| mIoU | 36% |  84.4%  |  84.9%  |  84.8%  | 87.5% 
+| mIoU | 36% |  84.4%  |  84.9%  |  84.8%  | 87.5% |
+
+
+## Acknowledgements
+
+Our code is based on KPConv algorithm [KPConv](https://github.com/HuguesTHOMAS/KPConv) [![DOI](https://zenodo.org/badge/264818686.svg)](https://zenodo.org/badge/latestdoi/264818686)
+Our data provider is [Cyclomedia](https://www.cyclomedia.com/nl)
+To track the model trainings [wandb website] (https://wandb.ai/home) and package is used. 
+
 
 
