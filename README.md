@@ -25,7 +25,18 @@ The repository contains the code, dataset, trained model, and some useful resour
 
 ## Installation
 
-A step-by-step installation guide for Ubuntu 20 is provided in [INSTALL.md](./INSTALL.md). 
+A step-by-step guide to setup the environment for Ubuntu 20.04 is provided in [INSTALL.md](./INSTALL.md). <br />
+After setting up the envionment, follow the steps below: <br />
+
+* Before running the training algorithm, split your data using the stratified split code (stratified_split) This code is reading laz format. Note that for handling .ply files requires some modifications.
+* Prepare the data using Prepare_data_xyzrgbi.py . This code prepares .laz files, saves them as .ply with normalized coordinates, color and intensity values and gives them proper names. 
+* Create a Data folder inside the KPConv folder and add the three folders of 'train_ply', 'val_ply', and 'test_ply' containing the prepared point clouds to it
+* Modify the 'self.path' variable in the ShapenNetPart.py in the ./KPConv/datasets folder to read the point clouds from the Data folder
+* Determine whether the intensity and color values are going to be fed into the model in the training_ShapeNetPart (color_info, intensity_info) and in ./KPConv/utils/config.py.
+* Run the training_ShapeNetPart.py
+
+# ATTENTION: In all the files you should give the custom path to your modified data in the previous step. 
+
 
 
 ## Achieved Milestones
