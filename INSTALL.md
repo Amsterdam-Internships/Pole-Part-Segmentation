@@ -20,7 +20,7 @@
      - PyQt5 (for visualization - optional)
      - wandb (for tracking the process - optional)
 
-#### Version of Packages used
+#### Version of the used packages
 
 | Package | cudatoolkit | cudnn | tensorflow-gpu | Python | NumPy | scikit-learn | PyQt | psutil | 
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
