@@ -1,4 +1,4 @@
-### Installation instructions for Ubuntu 16.04
+### Installation instructions for Ubuntu 20.04
      
 * Make sure <a href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html">CUDA</a>  and <a href="https://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html">cuDNN</a> are installed. One configurations have been tested: 
      - TensorFlow-gpu 1.12.0, CUDA 9.0 and cuDNN 7.6.5
@@ -32,12 +32,12 @@
 
 You should now be able to train Kernel-Point Convolution models
 
-### Installation instructions for Ubuntu 18.04 (Thank to @noahtren)
+### Additional Step for Ubuntu 18.04 and 20.04 (Thank to @noahtren)
 
 * Change the `-D_GLIBCXX_USE_CXX11_ABI=0` flag for each line in `tf_custom_ops/compile_op.sh` to '-D_GLIBCXX_USE_CXX11_ABI=1'
 
-     - TensorFlow-gpu 1.12.0, CUDA 9.0 and cuDNN 7.6.5
-     
+
+
 * Before running the training algorithm, split your data using the stratified split code (stratified_split) This code is reading laz format. for handling .ply files requires some modifications
 * Prepare the data using all_data_xyzrgbi.py . This code prepares .laz files, save them as .ply with coordinates, color and intensity  normalized values. 
 * Rname the files using Rename_Files.py -
