@@ -1,9 +1,9 @@
 ### Installation instructions for Ubuntu 20.04
      
 * Make sure <a href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html">CUDA</a>  and <a href="https://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html">cuDNN</a> are installed. One configurations have been tested: 
-     - TensorFlow-gpu 1.12.0, CUDA 9.0 and cuDNN 7.6.5
-  It is recommended to create an environment using conda with the mentioned configuration.</a>
-  If you are using CUDA 11.3, then use TensorFlow-gpu 1.13.0 instead.
+     - TensorFlow-gpu 1.12.0, CUDA 9.0 and cuDNN 7.6.5 <\b >
+  It is recommended to create an environment using conda with the mentioned configuration.<\b >
+  If you are using CUDA 11.3, then use TensorFlow-gpu 1.13.0 instead.<\b >
   
 * Ensure all python packages are installed :
 
