@@ -5,15 +5,13 @@
   <br />
   It is recommended to create an environment using conda with the mentioned configuration.<br />
   If you are using CUDA 11.3, then use TensorFlow-gpu 1.13.0 instead.<br />
-  
-* Ensure all python packages are installed :
 
-          sudo apt update
-          sudo apt install python3-dev python3-pip python3-tk
+* After installing Anaconda:
 
-* Follow <a href="https://www.tensorflow.org/install/pip">Tensorflow installation procedure</a>.
+          conda create -n tf-gpu cudatoolkit==9.0 tensorflow-gpu==1.12.0
+          conda activate tf-gpu
 
-* Install the other dependencies with pip:
+* Install the other dependencies with conda:
      - numpy
      - scikit-learn
      - psutil
