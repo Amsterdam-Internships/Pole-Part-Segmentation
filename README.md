@@ -65,9 +65,9 @@ The results of different experiments are shown in the table below. The mIoU valu
 
 ## Acknowledgements
 
-Our code is based on KPConv algorithm [KPConv](https://github.com/HuguesTHOMAS/KPConv) [![DOI](https://zenodo.org/badge/264818686.svg)](https://zenodo.org/badge/latestdoi/264818686)
-Our data provider is [Cyclomedia](https://www.cyclomedia.com/nl)
-To track the model trainings [wandb website] (https://wandb.ai/home) and package is used. 
+Our code is based on KPConv algorithm [KPConv](https://github.com/HuguesTHOMAS/KPConv). You can read more about the algorithm [here](https://arxiv.org/abs/1904.08889) <br />
+Our data provider is [Cyclomedia](https://www.cyclomedia.com/nl). <br />
+To track the model trainings [wandb](https://wandb.ai/home) is used. <br />
 
 
 
