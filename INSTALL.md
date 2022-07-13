@@ -34,6 +34,6 @@ You should now be able to train Kernel-Point Convolution models
 
 ### Additional Step for Ubuntu 18.04 and 20.04 (Thank to @noahtren)
 
-* Change the `-D_GLIBCXX_USE_CXX11_ABI=0` flag for each line in `tf_custom_ops/compile_op.sh` to '-D_GLIBCXX_USE_CXX11_ABI=1'
+* Change the `-D_GLIBCXX_USE_CXX11_ABI=0` flag for each line in `tf_custom_ops/compile_op.sh` to `-D_GLIBCXX_USE_CXX11_ABI=1`
 
 Now you are ready to run any code in KPConv folder.
