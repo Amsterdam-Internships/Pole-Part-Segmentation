@@ -54,6 +54,19 @@ After setting up the envionment, follow the steps below: <br />
 
 ### Inference
 
+## Parameter Setting 
+|Argument | Type or Action | Description | Default |
+|---|:---:|:---:|:---:|
+|`--batch_size`| int| `Batch size.`|  32|
+|`--device`| str| `Training device, cpu or cuda:0.`| `cpu`|
+|`--early-stopping`|  `store_true`| `Early stopping for training of sparse transformer.`| True|
+|`--epochs`| int| `Number of epochs.`| 21|
+|`--input_size`|  int| `Input size for model, i.e. the concatenation length of te, se and target.`| 99|
+|`--loss`|  str|  `Type of loss to be used during training. Options: RMSE, MAE.`|`RMSE`|
+|`--lr`|  float| `Learning rate.`| 1e-3|
+|`--train_ratio`|  float| `Percentage of the training set.`| 0.7|
+|...|...|...|...|
+
 ## Performances
 
 The results of different experiments are shown in the table below. The mIoU values shows that overall using intensity and color values is useful when distinguishing between pole attachments. Particularly, the improvement reflects in distinguishing different types of signs better as they have high reflectivity and distinct colors. You can also look at two examples in the media folder to gain insight about the qualitative results. 
