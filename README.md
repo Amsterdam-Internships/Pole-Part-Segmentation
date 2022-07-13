@@ -58,8 +58,6 @@ After setting up the envionment, follow the steps below: <br />
 
 The results of different experiments are shown in the table below. The mIoU values shows that overall using intensity and color values is useful when distinguishing between pole attachments. Particularly, the improvement reflects in distinguishing different types of signs better as they have high reflectivity and distinct colors. 
 
-### Part Segmentation of Pole-like objects 
-
 | Method | KPConv (default) | KPConv (debugged) | KPConv (x,y,z,i) |  KPConv (x,y,z,r,g,b) | KPConv (x,y,z,r,g,b,i) |
 | :--- | :---: | :---: | :---: | :---: | :---: |
 | mIoU | 36% |  84.4%  |  84.9%  |  84.8%  | 87.5% 
