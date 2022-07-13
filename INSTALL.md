@@ -36,14 +36,4 @@ You should now be able to train Kernel-Point Convolution models
 
 * Change the `-D_GLIBCXX_USE_CXX11_ABI=0` flag for each line in `tf_custom_ops/compile_op.sh` to '-D_GLIBCXX_USE_CXX11_ABI=1'
 
-
-
-* Before running the training algorithm, split your data using the stratified split code (stratified_split) This code is reading laz format. for handling .ply files requires some modifications
-* Prepare the data using all_data_xyzrgbi.py . This code prepares .laz files, save them as .ply with coordinates, color and intensity  normalized values. 
-* Rname the files using Rename_Files.py -
-* Create a Data folder in the KPConv folder and add the three folders of 'train_ply', 'val_ply', and 'test_ply' to it
-* Modify the ShapenNetPart.p in the dataset folder where it is defining the path to the dataset 
-* Determine whether the intensity and color values are going to be fed into the model in the training_ShapeNetPart (color_info, intensity_info)
-* Run the training_ShapeNetPart.py
-
-# ATTENTION: In all the files you should give the custom path to your modified data in the previous step. 
+Now you are ready to run any code in KPConv folder.
