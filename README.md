@@ -55,6 +55,9 @@ After setting up the envionment, follow the steps below: <br />
 ### Inference
 
 ## How it works
+Kernel-point convolution, or KPConv(Thomas et al., 2019), is a deep learning algorithm operating on 3D point clouds. The algorithm's design is motivated by the concept of having a regular grid for convolution in 2D image processing.  The kernel in this method is a spherical neighborhood with a predefined radius containing a specified number of points on its surface. The arrangement of points on the sphere surface is regular and predefined in the rigid form of KPConv, while in the deformable version of KPConv, the arrangement is learned to fit the local geometry of scene objects. Each kernel point has a learned weight and an area of influence based on Euclidean space and expressed by a correlation function (Thomas et al., 2019). The main assumption is the point cloud's spatial localization property, which allows a spatial kernel to influence a local neighborhood of each point and abstract the neighborhood features. 
+To create input for the next layer of the network, The kernel (sphere) center is located on each point in the point cloud. The surrounding points that fell into this neighborhood are considered neighboring points. For each of the neighboring points, a kernel function would be calculated considering its distance from all the kernel points and the learned weights of the kernel points. Each neighboring point influences more from the closest kernel points compared to the farther ones. The calculated kernel function for each neighbor will multiply by its feature matrix and generate a new feature with a lower dimension to describe the center point and its neighborhood as the input to the next layer in the network. 
+
 
 
 
