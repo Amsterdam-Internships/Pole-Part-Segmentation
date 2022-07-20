@@ -38,7 +38,7 @@ After setting up the envionment, follow the steps below: <br />
 * Modify the `self.path` variable in the `./KPConv/datasets/ShapeNetPart.py` to read the point clouds from the `Data` folder.
 * Determine whether the intensity and color values are going to be fed into the model in the `./KPConv/training_ShapeNetPart.py` and `./KPConv/utils/config.py` by modifying the boolean variables `intensity_info` and `color_info`. Also, the variable `in_features_dim` should be modified in both files as shown in the table below based on the input feature selection:
 
-| Features | Coordinate Values | Coordinate + Intensity Values | Coordinate + Color Values |  Coordinate + Intensity + Color Values| 
+| Features | (X,Y,Z) | (X,Y,Z) + Intensity | (X,Y,Z) + (R,G,B) |  (X,Y,Z) + Intensity + (R,G,B)| 
 | :--- | :---: | :---: | :---: | :---: | 
 | in_features_dim |  4  |  5  |  7  |  8  | 
 
