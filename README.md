@@ -56,7 +56,8 @@ After setting up the envionment, follow the steps below: <br />
 
 ### Inference
 * To prepare the inference point clouds, use `Prepare_data_xyzrgbi.py`. Since, the ground truth is not available for inference dataset, we set the labels for all the points to 1. comment the line 56 and uncomment the line 59 in `./KPConv/Prepare_data_xyzrgbi.py` to do so.
-* Copy your prepared point clouds in `./KPConv/Data/test_ply` folder.  
+* Copy your prepared point clouds in `./KPConv/Data/test_ply` folder. 
+* Go to `./KPConv/utils/tester.py` and set the `inference` variable to `True`.
 * Assign the file path to the `chosen_log` variable in `./KPConv/test_any_model.py`
 * Make sure that the conda environment `(tf-gpu)` is activated.
 * Run `test_any_model.py`
