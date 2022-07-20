@@ -33,7 +33,7 @@ After setting up the envionment, follow the steps below: <br />
 #### If you are running the pipeline for a custom dataset:  <br />
 
 * Before running the training algorithm, split your data using the stratified split code `0 - stratified_split_for_laz.py` in KPConv folder. This code is reading laz format. Note that for handling `.ply` files requires some modifications.
-* Prepare the data using `Prepare_data_xyzrgbi.py` . This code prepares .laz files, saves them as `.ply` with normalized coordinates, color and intensity values and gives them proper names. 
+* Prepare the data using `Prepare_data_xyzrgbi.py` . This code prepares .laz files, saves them as `.ply` with normalized coordinates, color and intensity values and gives them proper names. If your dataset does not contain intensity or color values you need to modify the code to skip related code lines.  
 * Create a `Data` folder inside the `KPConv` folder and add the three folders of `train_ply`, `val_ply`, and `test_ply` containing the prepared point clouds to it.
 * Modify the `self.path` variable in the `./KPConv/datasets/ShapeNetPart.py` to read the point clouds from the `Data` folder.
 * Determine whether the intensity and color values are going to be fed into the model in the `./KPConv/training_ShapeNetPart.py` and `./KPConv/utils/config.py` by modifying the boolean variables `intensity_info` and `color_info`.
@@ -55,6 +55,11 @@ After setting up the envionment, follow the steps below: <br />
 * Run `test_any_model.py`
 
 ### Inference
+* To prepare the inference point clouds, use `Prepare_data_xyzrgbi.py`. Since, the ground truth is not available for inference dataset, we set the labels for all the points to 1. comment the line 56 and uncomment the line 59 in `./KPConv/Prepare_data_xyzrgbi.py` to do so.
+* Copy your prepared point clouds in `./KPConv/Data/test_ply` folder.  
+* Assign the file path to the `chosen_log` variable in `./KPConv/test_any_model.py`
+* Make sure that the conda environment `(tf-gpu)` is activated.
+* Run `test_any_model.py`
 
 ## How it works
 Kernel-point convolution, or KPConv(Thomas et al., 2019), is a deep learning algorithm operating on 3D point clouds. The algorithm's design is motivated by the concept of having a regular grid for convolution in 2D image processing.  The kernel in this method is a spherical neighborhood with a predefined radius containing a specified number of points on its surface. The arrangement of points on the sphere surface is regular and predefined in the rigid form of KPConv, while in the deformable version of KPConv, the arrangement is learned to fit the local geometry of scene objects. Each kernel point has a learned weight and an area of influence based on Euclidean space and expressed by a correlation function (Thomas et al., 2019). The main assumption is the point cloud's spatial localization property, which allows a spatial kernel to influence a local neighborhood of each point and abstract the neighborhood features. 
