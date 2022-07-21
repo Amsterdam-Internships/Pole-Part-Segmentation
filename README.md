@@ -37,8 +37,8 @@ After setting up the envionment, follow the steps below: <br />
 * Create a `Data` folder inside the `KPConv` folder and add the three folders of `train_ply`, `val_ply`, and `test_ply` containing the prepared point clouds to it.
 * Modify the `self.path` variable in the `./KPConv/datasets/ShapeNetPart.py` to read the point clouds from the `Data` folder.
 * Determine whether the intensity and color values are going to be fed into the model in the `./KPConv/training_ShapeNetPart.py` and `./KPConv/utils/config.py` by modifying the boolean variables `intensity_info` and `color_info`.
-
 * Run the `./KPConv/training_ShapeNetPart.py`
+* Find your trained model and training outputs in `./KPConv/results`
 
 #### If you are runnning on our provided dataset: <br />
 
@@ -47,12 +47,15 @@ After setting up the envionment, follow the steps below: <br />
 * Determine whether the intensity and color values are going to be fed into the model in the `./KPConv/training_ShapeNetPart.py` and `./KPConv/utils/config.py` by modifying the variables `intensity_info` and `color_info`.
 * If you want to use [wandb](https://wandb.ai/home) dashboard to trace your experiment, install `wandb` package using `pip` installer. Also,uncomment lines related to `wandb` in the `imports and global variables` section in `./KPConv/training_ShapeNetPart.py` and fill your account information to use the dashboard. Then, uncomment wandb commands in the `./KPConv/utils/trainer.py` (line ,.. , and ...).
 * Run the `./KPConv/training_ShapeNetPart.py`
+* Find your trained model and training outputs in `./KPConv/results` folder.
 
 ### Testing
 * Find the trained model (log folder_) in `./KPConv/results` that you want to test and copy the path to it.
 * Assign the file path to the `chosen_log` variable in `./KPConv/test_any_model.py`
 * Make sure that the conda environment `(tf-gpu)` is activated.
-* Run `test_any_model.py`
+* Run `test_any_model.py`.
+* The mIoU will appear on the screen in form of a table.
+* Find the predicted point clouds in `./KPConv/test` folder.
 
 ### Inference
 * To prepare the inference point clouds, use `Prepare_data_xyzrgbi.py`. Since, the ground truth is not available for inference dataset, we set the labels for all the points to 1. comment the line 56 and uncomment the line 59 in `./KPConv/Prepare_data_xyzrgbi.py` to do so.
@@ -60,7 +63,9 @@ After setting up the envionment, follow the steps below: <br />
 * Go to `./KPConv/utils/tester.py` and set the `inference` variable to `True`.
 * Assign the file path to the `chosen_log` variable in `./KPConv/test_any_model.py`
 * Make sure that the conda environment `(tf-gpu)` is activated.
-* Run `test_any_model.py`
+* Run `test_any_model.py`. 
+* The mIoU appeared on the screen has no meaning because the ground truth is unknown.  
+* Find the predicted point clouds in `./KPConv/test` folder.
 
 ## How it works
 Kernel-point convolution, or KPConv(Thomas et al., 2019), is a deep learning algorithm operating on 3D point clouds. The algorithm's design is motivated by the concept of having a regular grid for convolution in 2D image processing.  The kernel in this method is a spherical neighborhood with a predefined radius containing a specified number of points on its surface. The arrangement of points on the sphere surface is regular and predefined in the rigid form of KPConv, while in the deformable version of KPConv, the arrangement is learned to fit the local geometry of scene objects. Each kernel point has a learned weight and an area of influence based on Euclidean space and expressed by a correlation function (Thomas et al., 2019). The main assumption is the point cloud's spatial localization property, which allows a spatial kernel to influence a local neighborhood of each point and abstract the neighborhood features. 
