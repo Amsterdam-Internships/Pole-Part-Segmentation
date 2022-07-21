@@ -92,7 +92,7 @@ As it can be seen, a flat input containing the points and their corresponding fe
 
 ## Performances
 
-The results of different experiments are shown in the table below. The mIoU values shows that overall using intensity and color values is useful when distinguishing between pole attachments. Particularly, the improvement reflects in distinguishing different types of signs better as they have high reflectivity and distinct colors. You can also look at two examples in the media folder to gain insight about the qualitative results. 
+The results of different experiments are shown in the table below. The mIoU values shows that overall using intensity and color values is useful when distinguishing between pole attachments. Particularly, the improvement reflects in distinguishing different types of signs better as they have high reflectivity and distinct colors. You can also look at two examples in the media folder to gain insight about the qualitative results.  You can also find the full report in the `doc` folder for per class results. 
 
 | Method | KPConv (default) | KPConv (debugged) | KPConv (x,y,z,i) |  KPConv (x,y,z,r,g,b) | KPConv (x,y,z,r,g,b,i) |
 | :--- | :---: | :---: | :---: | :---: | :---: |
