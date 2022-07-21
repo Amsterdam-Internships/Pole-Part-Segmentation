@@ -5,6 +5,7 @@ The repository is created by Sara Yousefimashhoor as the extension of Hugues THO
 The main changes to the original code are as follows:<br />
 •	Debugging the KPConv codes for the part-segmentation task.<br />
 •	Adding codes to prepare the custom dataset of the Gemeente Amsterdam for the part segmentation task.<br />
+•	Modifying the code and the hyper-parameters to fit the project's purpose.<br />
 •	Modifying the code to include addtitional features of intensity and color values.<br />
 
 
