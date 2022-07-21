@@ -86,12 +86,12 @@ There are four groups of input parameters for KPConv:<br />
 
 You can find more details about the parameters, their role, and their possible values in `./KPConv/utils/config.py`<br />
 
-Input parameters and Model parameters are almost kept the same as what the author of the paper has suggested. The main parameter fine-tuning is focused on the KPConv parameters to reach the optimized kernel shape and kernel points weights and arrangement. However, the fine-tuning results shows that the default values are almost optimized already. In this project, we fine-tuned the hyper-parameters for pole part segmentation purpose with the help of wandb dashboard and increased mIoU by 2% (See the table below). However, the qualitative result shows that new combination of parameters benefits some classes while worsen the predictions for others (See `./doc/report.pdf`). Therefore, the class of interest can influence the choice of hyper-parameters. <br />
+In this project, the main parameter fine-tuning is focused on the KPConv parameters to reach the optimized kernel shape and kernel points weights and arrangement.Input and model parameters remained intact. The hyper-parameter fine-tuning for pole part segmentation is done with the help of wandb dashboard. However, the fine-tuning results shows that the default values are almost optimized already. Only the change in three parameters shown in the table below could improve the mIoU by 2%.  Furthermore, the qualitative result shows that new combination of parameters benefits some classes while worsen the predictions for others (See `./doc/report.pdf`). Therefore, the class of interest can influence the choice of hyper-parameters. <br />
 
-| Parameters | density_parameter | num_kernel_points | batch_number |  
-| :--- | :---: | :---: | :---: |
-| Default Value | 5|  15 |  15  |
-| Optimized Value | 3 | 20  |  10 |
+| Parameters | density_parameter | num_kernel_points | batch_number | mIoU |
+| :--- | :---: | :---: | :---: | :---: |
+| Default Value | 5|  15 |  15  | 87.5% |
+| Optimized Value | 3 | 20  |  10 | 89.5% |
 
 
 ## Performances
