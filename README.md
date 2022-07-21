@@ -9,17 +9,17 @@ The main changes to the original code are as follows:<br />
 
 
 
-![Intro figure](https://github.com/Amsterdam-Internships/Pole-Part-Segmentation/blob/master/Picture1.png)
+![Intro figure](https://github.com/Amsterdam-Internships/Pole-Part-Segmentation/blob/master/media/Picture1.png)
 
 
 ## Project Folder Structure
 The repository contains the code, dataset, trained model, and some useful resources and examples of the pipeline, which are structured in the following format:
 
 1) [`data`](./data): Folder containing sample data for public use
-2) [`doc`](./doc): Folder containing the full report of the project 
+2) [`doc`](./doc): Folder containing the full report of the project, the label meaning and statistics about data partitions. 
 3) [`KPConv`](./KPConv): Folder containing the code and scripts to run the pipeline
 4) [`media`](./media): Folder containing media files (icons, video)
-5) [`model`](./model): Folder containing our trained models for pole part-segmentation task. One trained only with coordinate values `(Log_2022-03-14_09-05-26)`, and another trained using  coordinate, intensity, and color values `(Log_2022-03-19_22-04-18)`. 
+5) [`trained_models`](./trained_models): Folder containing our trained models for pole part-segmentation task. One trained only with coordinate values `(Log_2022-03-14_09-05-26)`, and another trained using  coordinate, intensity, and color values `(Log_2022-03-19_22-04-18)`. 
 
 
 ## Installation and deployment 
