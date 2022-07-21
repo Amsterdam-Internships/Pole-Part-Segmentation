@@ -286,7 +286,7 @@ class ModelTrainer:
                                          acc,
                                          1000 * mean_dt[0],
                                          1000 * mean_dt[1]))
-                    wandb.log({'Accuracy': acc, 'Output_Loss': L_out, 'Regularization_Loss': L_reg, 'Point_Loss': L_p})
+                    #wandb.log({'Accuracy': acc, 'Output_Loss': L_out, 'Regularization_Loss': L_reg, 'Point_Loss': L_p})
                 # Log file
                 if model.config.saving:
                     process = psutil.Process(os.getpid())
@@ -498,7 +498,7 @@ class ModelTrainer:
         val_ACC = 100 * np.sum(np.diag(C1)) / (np.sum(C1) + 1e-6)
         vote_ACC = 100 * np.sum(np.diag(C3)) / (np.sum(C3) + 1e-6)
         print('Accuracies : train = {:.1f}% / val = {:.1f}% / vote = {:.1f}%'.format(train_ACC, val_ACC, vote_ACC))
-        wandb.log({'val_acc': val_ACC, 'vote_acc': vote_ACC})
+        
 
         return C1
 
@@ -552,7 +552,7 @@ class ModelTrainer:
                                                  	  i0,
                                                           L_out,
                                                           acc))
-                wandb.log({'Validation_Accuracy': acc, 'Validation_Output_Loss': L_out})
+                #wandb.log({'Validation_Accuracy': acc, 'Validation_Output_Loss': L_out})
 
                 # Get predictions and labels per instance
                 # ***************************************
@@ -652,7 +652,7 @@ class ModelTrainer:
         # Print instance mean
         mIoU = 100 * np.mean(IoUs)
         mIoU2 = 100 * np.mean(vote_IoUs)
-        wandb.log({'mIoU': mIoU, 'vote mIoU': mIoU2})
+        #wandb.log({'mIoU': mIoU, 'vote mIoU': mIoU2})
         print('{:s} : mIoU = {:.1f}% / vote mIoU = {:.1f}%'.format(model.config.dataset, mIoU, mIoU2))
 
         return

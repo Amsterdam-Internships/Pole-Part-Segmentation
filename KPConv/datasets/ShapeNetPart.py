@@ -143,7 +143,6 @@ class ShapeNetPartDataset(Dataset):
             self.num_train = None
             self.num_test = None
             self.num_val = None
-            self.num_inf = None
 
         else:
             raise ValueError('Unsupported ShapenetPart object class : \'{:s}\''.format(self.ShapeNetPartType))
@@ -153,7 +152,7 @@ class ShapeNetPartDataset(Dataset):
         ##########################
 
         # Path of the folder containing ply files
-        self.path = '/home/s2478366/internship_repo/KPConv_IRGB/Data/ShapeNetPart/shapenetcore_partanno_segmentation_benchmark_v0/Set3_1'
+        self.path = '/home/s2478366/internship_repo/final_internship/Data'
 
         # Number of threads
         self.num_threads = input_threads
@@ -340,7 +339,7 @@ class ShapeNetPartDataset(Dataset):
 
         # Load wanted points if possible
         print('\nLoading training points')
-        #filename = join(self.path, 'train_{:.3f}_record.pkl'.format(subsampling_parameter))
+        filename = join(self.path, 'train_{:.3f}_record.pkl'.format(subsampling_parameter))
 
         #if exists(filename):
         #    with open(filename, 'rb') as file:
@@ -384,7 +383,7 @@ class ShapeNetPartDataset(Dataset):
                         self.input_point_labels['training'] += [sub_labels]
                     else:
                         self.input_points['training'] += [points]
-                        self.input_feats['training'] += [featuress]
+                        self.input_feats['training'] += [features]
                         self.input_point_labels['training'] += [point_labels]
 
                 elif color_info:
@@ -410,34 +409,50 @@ class ShapeNetPartDataset(Dataset):
                         self.input_points['training'] += [points]
                         self.input_ints['training'] += [intensity]
                         self.input_point_labels['training'] += [point_labels]
+             
+                else:
+                    if subsampling_parameter > 0:
+                        sub_points, sub_labels = grid_subsampling(points, labels=point_labels,
+                                                                  sampleDl=subsampling_parameter)
+                        self.input_points['training'] += [sub_points]
+                        self.input_point_labels['training'] += [sub_labels]
+                    else:
+                        self.input_points['training'] += [points]
+                        self.input_point_labels['training'] += [point_labels]
  
             # Get labels
         label_names = ['_'.join(n.split('_')[:-1]) for n in names]
         self.input_labels['training'] = np.array([self.name_to_label[name] for name in label_names])
 
             # Save for later use
-            #with open(filename, 'wb') as file:
-            #    if color_info and intensity_info:
-            #        number = 8
-            #        pickle.dump((self.input_labels['training'],
-            #                     self.input_points['training'],
-            #                     self.input_feats['training'],
-            #                     self.input_point_labels['training']), file)
-            #    elif color_info:
-            #        number = 7
-            #        pickle.dump((self.input_labels['training'],
-            #                     self.input_points['training'],
-            #                     self.input_colors['training'],
-            #                     self.input_point_labels['training']), file)
-            #    elif intensity_info:
-            #        number = 5
-            #        pickle.dump((self.input_labels['training'],
-            #                     self.input_points['training'],
-            #                     self.input_ints['training'],
-            #                     self.input_point_labels['training']), file)
+        with open(filename, 'wb') as file:
+            if color_info and intensity_info:
+                number = 8
+                pickle.dump((self.input_labels['training'],
+                             self.input_points['training'],
+                             self.input_feats['training'],
+                             self.input_point_labels['training']), file)
+            elif color_info:
+                 number = 7
+                 pickle.dump((self.input_labels['training'],
+                              self.input_points['training'],
+                              self.input_colors['training'],
+                              self.input_point_labels['training']), file)
+            elif intensity_info:
+                number = 5
+                pickle.dump((self.input_labels['training'],
+                             self.input_points['training'],
+                             self.input_ints['training'],
+                             self.input_point_labels['training']), file)
+            else:
+                number = 4
+                pickle.dump((self.input_labels['training'],
+                             self.input_points['training'],
+                             self.input_point_labels['training']), file)
+
 
         lengths = [p.shape[0] for p in self.input_points['training']]
-        sizes = [l * 8 * 3 for l in lengths]
+        sizes = [l * number * 3 for l in lengths]
         print('{:.1f} MB loaded in {:.1f}s'.format(np.sum(sizes) * 1e-6, time.time() - t0))
 
         ############
@@ -449,7 +464,7 @@ class ShapeNetPartDataset(Dataset):
 
         # Load wanted points if possible
         print('\nLoading validation points')
-        #filename = join(self.path, 'validation_{:.3f}_record.pkl'.format(subsampling_parameter))
+        filename = join(self.path, 'validation_{:.3f}_record.pkl'.format(subsampling_parameter))
         #if exists(filename):
         #    with open(filename, 'rb') as file:
         #        if color_info and intensity_info:
@@ -490,7 +505,7 @@ class ShapeNetPartDataset(Dataset):
                         self.input_point_labels['validation'] += [sub_labels]
                     else:
                         self.input_points['validation'] += [points]
-                        self.input_feats['validation'] += [featuress]
+                        self.input_feats['validation'] += [features]
                         self.input_point_labels['validation'] += [point_labels]
 
                 elif color_info:
@@ -516,35 +531,47 @@ class ShapeNetPartDataset(Dataset):
                         self.input_points['validation'] += [points]
                         self.input_ints['validation'] += [intensity]
                         self.input_point_labels['validation'] += [point_labels]
-  
+                else:
+                    if subsampling_parameter > 0:
+                        sub_points, sub_labels = grid_subsampling(points, labels=point_labels,
+                                                                  sampleDl=subsampling_parameter)
+                        self.input_points['validation'] += [sub_points]
+                        self.input_point_labels['validation'] += [sub_labels]
+                    else:
+                        self.input_points['validation'] += [points]
+                        self.input_point_labels['validation'] += [point_labels]  
             # Get labels
         label_names = ['_'.join(n.split('_')[:-1]) for n in names]
         self.input_labels['validation'] = np.array([self.name_to_label[name] for name in label_names])
 
             # Save for later use
-            #with open(filename, 'wb') as file:
-            #    if color_info and intensity_info:
-            #        number = 8
-            #        pickle.dump((self.input_labels['validation'],
-            #                     self.input_points['validation'],
-            #                     self.input_feats['validation'],
-            #                     self.input_point_labels['validation']), file)
-            #    elif color_info:
-            #        number = 7
-            #        pickle.dump((self.input_labels['validation'],
-            #                     self.input_points['validation'],
-            #                     self.input_colors['validation'],
-            #                     self.input_point_labels['validation']), file)
-            #    elif intensity_info:
-            #        number = 5
-            #        pickle.dump((self.input_labels['validation'],
-            #                     self.input_points['validation'],
-            #                     self.input_ints['validation'],
-            #                     self.input_point_labels['validation']), file)
-
+        with open(filename, 'wb') as file:
+            if color_info and intensity_info:
+                number = 8
+                pickle.dump((self.input_labels['validation'],
+                             self.input_points['validation'],
+                             self.input_feats['validation'],
+                             self.input_point_labels['validation']), file)
+            elif color_info:
+                number = 7
+                pickle.dump((self.input_labels['validation'],
+                             self.input_points['validation'],
+                             self.input_colors['validation'],
+                             self.input_point_labels['validation']), file)
+            elif intensity_info:
+                number = 5
+                pickle.dump((self.input_labels['validation'],
+                             self.input_points['validation'],
+                             self.input_ints['validation'],
+                             self.input_point_labels['validation']), file)
+            else:
+                number = 4
+                pickle.dump((self.input_labels['validation'],
+                             self.input_points['validation'],
+                             self.input_point_labels['validation']), file)
 
         lengths = [p.shape[0] for p in self.input_points['validation']]
-        sizes = [l * 8 * 3 for l in lengths]
+        sizes = [l * number * 3 for l in lengths]
         print('{:.1f} MB loaded in {:.1f}s'.format(np.sum(sizes) * 1e-6, time.time() - t0))
 
         ############
@@ -556,7 +583,7 @@ class ShapeNetPartDataset(Dataset):
 
         # Load wanted points if possible
         print('\nLoading test points')
-        #filename = join(self.path, 'test_{:.3f}_record.pkl'.format(subsampling_parameter))
+        filename = join(self.path, 'test_{:.3f}_record.pkl'.format(subsampling_parameter))
         #if exists(filename):
         #    with open(filename, 'rb') as file:
         #        if color_info and intensity_info:
@@ -601,7 +628,7 @@ class ShapeNetPartDataset(Dataset):
                         self.input_point_labels['test'] += [sub_labels]
                     else:
                         self.input_points['test'] += [points]
-                        self.input_feats['test'] += [featuress]
+                        self.input_feats['test'] += [features]
                         self.input_point_labels['test'] += [point_labels]
 
                 elif color_info:
@@ -628,35 +655,47 @@ class ShapeNetPartDataset(Dataset):
                         self.input_ints['test'] += [intensity]
                         self.input_point_labels['test'] += [point_labels]
   
-     
+                else:
+                    if subsampling_parameter > 0:
+                        sub_points, sub_labels = grid_subsampling(points, labels=point_labels,
+                                                                  sampleDl=subsampling_parameter)
+                        self.input_points['test'] += [sub_points]
+                        self.input_point_labels['test'] += [sub_labels]
+                    else:
+                        self.input_points['test'] += [points]
+                        self.input_point_labels['test'] += [point_labels]     
             # Get labels
         label_names = ['_'.join(n.split('_')[:-1]) for n in names]
         self.input_labels['test'] = np.array([self.name_to_label[name] for name in label_names])
 
             # Save for later use
-            #with open(filename, 'wb') as file:
-            #    if color_info and intensity_info:
-            #        number = 8
-            #        pickle.dump((self.input_labels['test'],
-            #                     self.input_points['test'],
-            #                     self.input_feats['test'],
-            #                     self.input_point_labels['test']), file)
-            #    elif color_info:
-            #        number = 7
-            #        pickle.dump((self.input_labels['test'],
-            #                     self.input_points['test'],
-            #                     self.input_colors['test'],
-            #                     self.input_point_labels['test']), file)
-            #    elif intensity_info:
-            #        number = 5
-            #        pickle.dump((self.input_labels['test'],
-            #                     self.input_points['test'],
-            #                     self.input_ints['test'],
-            #                     self.input_point_labels['test']), file)
-
+        with open(filename, 'wb') as file:
+            if color_info and intensity_info:
+                number = 8
+                pickle.dump((self.input_labels['test'],
+                             self.input_points['test'],
+                             self.input_feats['test'],
+                             self.input_point_labels['test']), file)
+            elif color_info:
+                number = 7
+                pickle.dump((self.input_labels['test'],
+                             self.input_points['test'],
+                             self.input_colors['test'],
+                             self.input_point_labels['test']), file)
+            elif intensity_info:
+                number = 5
+                pickle.dump((self.input_labels['test'],
+                             self.input_points['test'],
+                             self.input_ints['test'],
+                             self.input_point_labels['test']), file)
+            else:
+                number = 4
+                pickle.dump((self.input_labels['test'],
+                             self.input_points['test'],
+                             self.input_point_labels['test']), file)
 
         lengths = [p.shape[0] for p in self.input_points['test']]
-        sizes = [l * 8 * 3 for l in lengths]
+        sizes = [l * number * 3 for l in lengths]
         print('{:.1f} MB loaded in {:.1f}s\n'.format(np.sum(sizes) * 1e-6, time.time() - t0))
 
         #######################################
@@ -670,11 +709,11 @@ class ShapeNetPartDataset(Dataset):
 
             # Manage training points
             boolean_mask = self.input_labels['training'] == wanted_label
-            #self.input_labels['training'] = self.input_labels['training'][boolean_mask]
-            print(str(boolean_mask))
+            self.input_labels['training'] = self.input_labels['training'][boolean_mask]
+            #print(str(boolean_mask))
             #print(len(boolean_mask))
-            print(self.input_labels['training'])
-            print(len(self.input_labels['training']))
+            #print(self.input_labels['training'])
+            #print(len(self.input_labels['training']))
             self.input_points['training'] = np.array(self.input_points['training'])[boolean_mask]
             if color_info and intensity_info:
                 self.input_feats['training'] = np.array(self.input_feats['training'])[boolean_mask]
@@ -788,7 +827,7 @@ class ShapeNetPartDataset(Dataset):
                 n = new_points.shape[0]
 
                 # In case batch is full, yield it and reset it
-                if batch_n + n > self.batch_limit:
+                if batch_n + n > self.batch_limit and batch_n>0:
                     yield (np.concatenate(tp_list, axis=0),
                            np.array(tl_list, dtype=np.int32),
                            np.concatenate(tpl_list, axis=0),
@@ -850,7 +889,7 @@ class ShapeNetPartDataset(Dataset):
                 n = new_points.shape[0]
 
                 # In case batch is full, yield it and reset it
-                if batch_n + n > self.batch_limit:
+                if batch_n + n > self.batch_limit and batch_n>0:
                     if color_info or intensity_info:
                         yield (np.concatenate(tp_list, axis=0),
                                np.concatenate(feat_list, axis=0),
@@ -910,13 +949,15 @@ class ShapeNetPartDataset(Dataset):
             if config.color_info and config.intensity_info:
                 gen_types =(tf.float32, tf.float32, tf.int32, tf.int32, tf.int32)
                 gen_shapes = ([None, 3], [None, 4], [None], [None], [None])
-            elif color_info: 
+            elif config.color_info: 
                 gen_types = (tf.float32, tf.float32, tf.int32, tf.int32, tf.int32)
                 gen_shapes = ([None, 3], [None, 3], [None], [None], [None])
-            elif intensity_info:
+            elif config.intensity_info:
                 gen_types = (tf.float32, tf.float32, tf.int32, tf.int32, tf.int32)
                 gen_shapes = ([None, 3], [None, 1], [None], [None], [None])
-
+            else:
+                gen_types = (tf.float32, tf.int32, tf.int32, tf.int32)
+                gen_shapes = ([None, 3], [None], [None], [None])
             return variable_batch_gen_segment, gen_types, gen_shapes
         else:
             raise ValueError('Unsupported ShapeNetPart dataset type')
@@ -965,6 +1006,46 @@ class ShapeNetPartDataset(Dataset):
             input_list += [scales, rots, obj_inds]
 
             return input_list
+        def tf_map_segment_xyz(stacked_points, point_labels, obj_inds, stack_lengths):
+            """
+            From the input point cloud, this function compute all the point clouds at each layer, the neighbors
+            indices, the pooling indices and other useful variables.
+            :param stacked_points: Tensor with size [None, 3] where None is the total number of points
+            :param labels: Tensor with size [None] where None is the number of batch
+            :param stack_lengths: Tensor with size [None] where None is the number of batch
+            """
+
+            # Get batch indice for each point
+            batch_inds = self.tf_get_batch_inds(stack_lengths)
+
+            # Augment input points
+            stacked_points, scales, rots = self.tf_augment_input(stacked_points,
+                                                                 batch_inds,
+                                                                 config)
+
+            # First add a column of 1 as feature for the network to be able to learn 3D shapes
+            stacked_features = tf.ones((tf.shape(stacked_points)[0], 1), dtype=tf.float32)
+
+            # Then use positions or not
+            if config.in_features_dim == 1:
+                pass
+            elif config.in_features_dim == 4:
+                stacked_features = tf.concat((stacked_features, stacked_points), axis=1)
+            else:
+                raise ValueError('Only accepted input dimensions are 1 or 4 (without and with XYZ)')
+
+            # Get the whole input list
+            input_list = self.tf_segmentation_inputs(config,
+                                                     stacked_points,
+                                                     stacked_features,
+                                                     point_labels,
+                                                     stack_lengths,
+                                                     batch_inds)
+
+            # Add scale and rotation for testing
+            input_list += [scales, rots, obj_inds]
+
+            return input_list
 
         def tf_map_segment(stacked_points, stacked_features, point_labels, obj_inds, stack_lengths):
             """
@@ -1002,7 +1083,7 @@ class ShapeNetPartDataset(Dataset):
                 stacked_ints = stacked_features[:, 3:]
                 stacked_features = tf.concat((stacked_feats, stacked_colors, stacked_ints, stacked_points), axis=1)
             else:
-                raise ValueError('Only accepted input dimensions are 1, 4 and 7 (without and with XYZ)')
+                raise ValueError('Only accepted input dimensions are 5, 7 and 8')
 
             # Get the whole input list
             input_list = self.tf_segmentation_inputs(config,
@@ -1021,7 +1102,10 @@ class ShapeNetPartDataset(Dataset):
             return tf_map_multi
 
         elif self.ShapeNetPartType in self.label_names:
-            return tf_map_segment
+            if config.intensity_info==False and config.color_info==False:
+                return tf_map_segment_xyz
+            else:
+                return tf_map_segment
         else:
             raise ValueError('Unsupported ShapeNetPart dataset type')
 

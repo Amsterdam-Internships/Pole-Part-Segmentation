@@ -1,0 +1,12 @@
+0 - Pole
+1 - Street light
+2 - Traffic light
+3 - Traffic sign
+4 - Street sign
+5 - Direction sign
+6 - Flag / banner
+7 - Decoration / Flowers
+8 - Horizontal bar
+9 - Camera
+10 - Public transport sign
+11 - Bollard

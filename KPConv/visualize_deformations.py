@@ -28,7 +28,7 @@ import numpy as np
 
 # My libs
 from utils.config import Config
-from utils.tester import ModelTester
+from utils.visualizer import ModelVisualizer
 from models.KPCNN_model import KernelPointCNN
 from models.KPFCNN_model import KernelPointFCNN
 
@@ -36,9 +36,9 @@ from models.KPFCNN_model import KernelPointFCNN
 from datasets.ModelNet40 import ModelNet40Dataset
 from datasets.ShapeNetPart import ShapeNetPartDataset
 from datasets.S3DIS import S3DISDataset
-from datasets.Scannet import ScannetDataset
-from datasets.NPM3D import NPM3DDataset
 from datasets.Semantic3D import Semantic3DDataset
+from datasets.NPM3D import NPM3DDataset
+from datasets.Scannet import ScannetDataset
 
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -48,7 +48,7 @@ from datasets.Semantic3D import Semantic3DDataset
 #
 
 
-def test_caller(path, step_ind, on_val):
+def visu_caller(path, step_ind, deform_idx):
 
     ##########################
     # Initiate the environment
@@ -61,7 +61,7 @@ def test_caller(path, step_ind, on_val):
     os.environ['CUDA_VISIBLE_DEVICES'] = GPU_ID
 
     # Disable warnings
-    os.environ['TF_CPP_MIN_LOG_LEVEL'] = '0'
+    os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
     ###########################
     # Load the model parameters
@@ -78,9 +78,10 @@ def test_caller(path, step_ind, on_val):
     # Change parameters for the test here. For example, you can stop augmenting the input data.
 
     #config.augment_noise = 0.0001
-    #config.augment_color = 1.0
-    config.validation_size = 500
-    #config.batch_num = 10
+    #config.augment_symmetries = False
+
+    config.batch_num = 3
+    config.in_radius = 4
 
     ##############
     # Prepare Data
@@ -95,12 +96,13 @@ def test_caller(path, step_ind, on_val):
         dataset = ModelNet40Dataset(config.input_threads)
     elif config.dataset == 'S3DIS':
         dataset = S3DISDataset(config.input_threads)
+        on_val = True
     elif config.dataset == 'Scannet':
-        dataset = ScannetDataset(config.input_threads, load_test=(not on_val))
+        dataset = ScannetDataset(config.input_threads, load_test=True)
     elif config.dataset.startswith('ShapeNetPart'):
         dataset = ShapeNetPartDataset(config.dataset.split('_')[1], config.input_threads)
     elif config.dataset == 'NPM3D':
-        dataset = NPM3DDataset(config.input_threads, load_test=(not on_val))
+        dataset = NPM3DDataset(config.input_threads, load_test=True)
     elif config.dataset == 'Semantic3D':
         dataset = Semantic3DDataset(config.input_threads)
     else:
@@ -111,11 +113,10 @@ def test_caller(path, step_ind, on_val):
     dataset.load_subsampled_clouds(dl0)
 
     # Initialize input pipelines
-    if on_val:
+    if config.dataset == 'S3DIS':
         dataset.init_input_pipeline(config)
     else:
         dataset.init_test_input_pipeline(config)
-
 
     ##############
     # Define Model
@@ -149,46 +150,21 @@ def test_caller(path, step_ind, on_val):
     chosen_snap = os.path.join(path, 'snapshots', 'snap-{:d}'.format(chosen_step))
 
     # Create a tester class
-    tester = ModelTester(model, restore_snap=chosen_snap)
+    visualizer = ModelVisualizer(model, restore_snap=chosen_snap)
     t2 = time.time()
 
     print('\n----------------')
     print('Done in {:.1f} s'.format(t2 - t1))
     print('----------------\n')
 
-    ############
-    # Start test
-    ############
+    #####################
+    # Start visualization
+    #####################
 
-    print('Start Test')
-    print('**********\n')
+    print('Start visualization')
+    print('*******************\n')
 
-    if config.dataset.startswith('ShapeNetPart'):
-        if config.dataset.split('_')[1] == 'multi':
-            tester.test_multi_segmentation(model, dataset)
-        else:
-            tester.test_segmentation(model, dataset)
-    elif config.dataset.startswith('S3DIS'):
-        tester.test_cloud_segmentation_on_val(model, dataset)
-    elif config.dataset.startswith('Scannet'):
-        if on_val:
-            tester.test_cloud_segmentation_on_val(model, dataset)
-        else:
-            tester.test_cloud_segmentation(model, dataset)
-    elif config.dataset.startswith('Semantic3D'):
-        if on_val:
-            tester.test_cloud_segmentation_on_val(model, dataset)
-        else:
-            tester.test_cloud_segmentation(model, dataset)
-    elif config.dataset.startswith('NPM3D'):
-        if on_val:
-            tester.test_cloud_segmentation_on_val(model, dataset)
-        else:
-            tester.test_cloud_segmentation(model, dataset)
-    elif config.dataset.startswith('ModelNet40'):
-        tester.test_classification(model, dataset)
-    else:
-        raise ValueError('Unsupported dataset')
+    visualizer.show_deformable_kernels(model, dataset, deform_idx)
 
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -200,9 +176,9 @@ def test_caller(path, step_ind, on_val):
 
 if __name__ == '__main__':
 
-    ##########################
-    # Choose the model to test
-    ##########################
+    ###############################
+    # Choose the model to visualize
+    ###############################
 
     #
     #   Here you can choose which model you want to test with the variable test_model. Here are the possible values :
@@ -213,16 +189,10 @@ if __name__ == '__main__':
     #
     #       > 'last_S3DIS': Automatically retrieve the last trained model on S3DIS
     #
-    #       > 'last_Scannet': Automatically retrieve the last trained model on Scannet
-    #
-    #       > 'last_NPM3D': Automatically retrieve the last trained model on NPM3D
-    #
-    #       > 'last_Semantic3D': Automatically retrieve the last trained model on Semantic3D
-    #
     #       > 'results/Log_YYYY-MM-DD_HH-MM-SS': Directly provide the path of a trained model
     #
 
-    chosen_log = 'results/Log_2022-02-27_17-51-18'
+    chosen_log = 'results/Log_2019-03-27_20-31-49'  # => NPM3D
 
     #
     #   You can also choose the index of the snapshot to load (last by default)
@@ -231,10 +201,10 @@ if __name__ == '__main__':
     chosen_snapshot = -1
 
     #
-    #   Eventually, you can choose to test your model on the validation set
+    #   Eventually you can choose which feature is visualized (index of the deform operation in the network)
     #
 
-    on_val = False
+    chosen_deformation = 0
 
     #
     #   If you want to modify certain parameters in the Config class, for example, to stop augmenting the input data,
@@ -245,15 +215,8 @@ if __name__ == '__main__':
     # Call the test initializer
     ###########################
 
-    handled_logs = ['last_ModelNet40',
-                    'last_ShapeNetPart',
-                    'last_S3DIS',
-                    'last_Scannet',
-                    'last_NPM3D',
-                    'last_Semantic3D']
-
     # Automatically retrieve the last trained model
-    if chosen_log in handled_logs:
+    if chosen_log in ['last_ModelNet40', 'last_ShapeNetPart', 'last_S3DIS']:
 
         # Dataset name
         test_dataset = '_'.join(chosen_log.split('_')[1:])
@@ -269,7 +232,7 @@ if __name__ == '__main__':
                 chosen_log = log
                 break
 
-        if chosen_log in handled_logs:
+        if chosen_log in ['last_ModelNet40', 'last_ShapeNetPart', 'last_S3DIS']:
             raise ValueError('No log of the dataset "' + test_dataset + '" found')
 
     # Check if log exists
@@ -277,7 +240,7 @@ if __name__ == '__main__':
         raise ValueError('The given log does not exists: ' + chosen_log)
 
     # Let's go
-    test_caller(chosen_log, chosen_snapshot, on_val)
+    visu_caller(chosen_log, chosen_snapshot, chosen_deformation)
 
 
 

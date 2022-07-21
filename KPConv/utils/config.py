@@ -39,18 +39,25 @@ class Config:
     # Dimension of input points
     in_points_dim = 3
 
+    # determines used features (Boolean)
+    color_info = False
+    intensity_info = False
+
     # Dimension of input features
-    in_features_dim = 4
+    if color_info and intensity_info:
+        in_features_dim = 8
+    elif color_info:
+        in_features_dim = 7
+    elif intensity_info:
+        in_features_dim = 5
+    else:
+        in_features_dim = 4
 
     # Radius of the input sphere (ignored for models, only used for point clouds)
     in_radius = 1.000
 
     # Number of CPU threads for the input pipeline
     input_threads = 8
-
-    # determines used features (Boolean)
-    color_info = True
-    intensity_info = True
 
     ##################
     # Model parameters
@@ -74,7 +81,7 @@ class Config:
     ###################
 
     # First size of grid used for subsampling
-    first_subsampling_dl = 0.02
+    first_subsampling_dl = 0.05
 
     # Radius of the kernels in the first layer (deprecated)
     first_kernel_radius = 0.1

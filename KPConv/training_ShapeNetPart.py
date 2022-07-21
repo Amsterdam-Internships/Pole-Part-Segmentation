@@ -27,14 +27,10 @@
 import time
 import os
 import sys
-#######################
-#      ATTENTION      #
-#######################
-# UNCOMMENT BELOW IF YOU ARTHORIZED TO TRACK THE EXPERIMENT WITH WANDB.AI
 #import wandb
 #wandb.login(key='')
 #wandb.init(project="")
-
+#wandb.agent('')
 import tensorflow as tf
 # Custom libs
 from utils.config import Config
@@ -76,8 +72,8 @@ class ShapeNetPartConfig(Config):
     input_threads = 8
     
     # Used features
-    color_info = True
-    intensity_info = True
+    color_info = False
+    intensity_info = False
     #########################
     # Architecture definition
     #########################
@@ -105,7 +101,7 @@ class ShapeNetPartConfig(Config):
     # KPConv specific parameters
     #num_kernel_points = config.num_kernel_points
     num_kernel_points = 15 
-    first_subsampling_dl = 0.1
+    first_subsampling_dl = 0.05
 
     # Density of neighborhoods for deformable convs (which need bigger radiuses). For normal conv we use KP_extent
     #density_parameter = config.density_parameter 
@@ -132,7 +128,14 @@ class ShapeNetPartConfig(Config):
     offsets_decay = 0.1
 
     # Choice of input features
-    in_features_dim = 7
+    if color_info and intensity_info:
+        in_features_dim = 8
+    elif color_info:
+        in_features_dim = 7
+    elif intensity_info:
+        in_features_dim = 5
+    else:
+        in_features_dim = 4
 
     # Batch normalization parameters
     use_batch_norm = True
@@ -154,7 +157,7 @@ class ShapeNetPartConfig(Config):
 
     # Number of batch
     #batch_num = config.batch_num
-    batch_num = 20
+    batch_num = 10
 
     # Number of steps per epochs (cannot be None for this dataset)
     epoch_steps = None
@@ -196,7 +199,7 @@ if __name__ == '__main__':
     ##########################
 
     # Choose which gpu to use
-    GPU_ID = '1'
+    GPU_ID = '0'
 
     # Set GPU visible device
     os.environ['CUDA_VISIBLE_DEVICES'] = GPU_ID

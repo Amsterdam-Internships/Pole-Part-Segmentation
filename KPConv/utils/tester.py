@@ -46,6 +46,7 @@ import json
 #           Tester Class
 #       \******************/
 #
+inference = True
 
 class TimeLiner:
 
@@ -206,7 +207,11 @@ class ModelTester:
 
         return
 
-    def test_segmentation(self, model, dataset, num_votes=100, num_saves=23):
+    def test_segmentation(self, model, dataset):
+        if inference:
+            num_votes = 1
+        else:
+            num_votes = 100
 
         ##################
         # Pre-computations
@@ -220,6 +225,7 @@ class ModelTester:
         object_name = model.config.dataset.split('_')[1]
         test_names = [f[:-4] for f in listdir(original_path) if f[-4:] == '.ply' and object_name in f]
         test_names = np.sort(test_names)
+        num_saves = int(len(test_names)/2)
         print(test_names)
         original_labels = []
         original_points = []
@@ -230,6 +236,7 @@ class ModelTester:
             data = read_ply(join(original_path, cloud_name + '.ply'))
             points = np.vstack((data['x'], data['y'], data['z'])).T
             original_labels += [data['label']]
+
             original_points += [points]
 
             # Create tree structure and compute neighbors

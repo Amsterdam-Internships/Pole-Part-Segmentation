@@ -55,7 +55,7 @@ def test_caller(path, step_ind, on_val):
     ##########################
 
     # Choose which gpu to use
-    GPU_ID = '1'
+    GPU_ID = '0'
 
     # Set GPU visible device
     os.environ['CUDA_VISIBLE_DEVICES'] = GPU_ID
@@ -224,7 +224,7 @@ if __name__ == '__main__':
     #       > 'results/Log_YYYY-MM-DD_HH-MM-SS': Directly provide the path of a trained model
     #
 
-    chosen_log = '/home/s2478366/internship_repo/KPConv_IRGB/results/Log_2022-03-28_11-38-10'
+    chosen_log = '/home/s2478366/internship_repo/final_internship/results/Log_2022-03-14_09-05-26'
 
     #
     #   You can also choose the index of the snapshot to load (last by default)

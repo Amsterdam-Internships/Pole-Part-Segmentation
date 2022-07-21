@@ -490,6 +490,8 @@ class Dataset:
             return np.vstack((data['x'], data['y'], data['z'], data['red'], data['green'], data['blue'])).T
         elif intensity_info:
             return np.vstack((data['x'], data['y'], data['z'], data['intensity'])).T  
+        else:
+            return np.vstack((data['x'], data['y'], data['z'])).T
 
     def get_tf_mapping(self, config):
         raise ValueError('You need to implement a "get_tf_mapping" method for this dataset.')

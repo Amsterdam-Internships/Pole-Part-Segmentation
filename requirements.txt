@@ -1,0 +1,7 @@
+psutil==5.8.0
+matplotlib==3.3.4
+PyQt5==5.15.4
+scikit-learn==0.24.2
+numpy==1.19.2
+tensorflow-gpu==1.13.1
+
