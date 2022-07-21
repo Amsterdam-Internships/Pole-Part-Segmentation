@@ -84,7 +84,7 @@ There are four groups of input parameters for KPConv:<br />
 * KPConv Parameters: These are the main hyperparameters mainly describing the spherical kernel and the kernel points. The number of kernel points, the density parameter, the extent of the kernel points influence zone, the influence mode (linear, constant, gaussian) of the kernel points, the convolution mode (whether to use the sum or use the closest value to the point center?) is determined here. 
 * Training Parameters: These parameters are mainly about the learning rate, the weights of each type of loss in the calculation of the total loss, the data augmentation details, the number of epochs and steps. Also the number of batches and snapshot gaps. <br />
 
-You can find more details in `./KPConv/utils/config.py`<br />
+You can find more details about the parameters, their role, and their possible values in `./KPConv/utils/config.py`<br />
 
 Input parameters and Model parameters are almost kept the same as what the author of the paper has suggested. The main parameter fine-tuning is focused on the KPConv parameters to reach the optimized kernel shape and kernel points weights and arrangement. However, the fine-tuning results shows that the default values are optimized already. <br />
 
