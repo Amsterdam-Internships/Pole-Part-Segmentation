@@ -30,7 +30,7 @@ After setting up the envionment, follow the steps below:
 
 1) Clone this repository:
     ```bash
-    git clone https://github.com/Amsterdam-Internships/InternshipAmsterdamGeneral
+    git clone https://github.com/Amsterdam-Internships/Pole-Part-Segmentation.git
     ```
 
 
