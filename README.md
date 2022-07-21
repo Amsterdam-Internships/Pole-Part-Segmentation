@@ -32,8 +32,8 @@ After setting up the envionment, follow the steps below: <br />
 
 #### If you are running the pipeline for a custom dataset:  <br />
 
-* Before running the training algorithm, split your data using the stratified split code `0 - stratified_split_for_laz.py` in KPConv folder. This code is reading laz format. Note that for handling `.ply` files requires some modifications.
-* Prepare the data using `Prepare_data_xyzrgbi.py` . This code prepares .laz files, saves them as `.ply` with normalized coordinates, color and intensity values and gives them proper names. If your dataset does not contain intensity or color values you need to modify the code to skip related code lines.  
+* Before running the training algorithm, split your data using `./KPConv/0_stratified_split_for_laz.py`. This code is reading laz format. Note that for handling `.ply` files requires some modifications. In this step, modify the `test_size` variable to determine what percentage of the dataset is dedicated to validation and test (combined). Also, modify the `val_size` variable to determine what percentage of the splitted test set is dedicated to validation. The output of the code is three folders of `train_ply`, `test_ply`, and `val_ply` inside the original data folders.
+* Prepare the partitioned data using `1_prepare_data_xyzrgbi.py` . This code prepares .laz files, saves them as `.ply` with normalized coordinates, color and intensity values (16bit) and gives them proper names. If your dataset does not contain intensity or color values you need to modify the code to skip related code lines.  The code rewrites prepared point clouds in `train_ply`, `test_ply`, and `val_ply` folders in .ply format. The taregt directory should be modified and set to the parent folder containing all the splits. 
 * Create a `Data` folder inside the `KPConv` folder and add the three folders of `train_ply`, `val_ply`, and `test_ply` containing the prepared point clouds to it.
 * Modify the `self.path` variable in the `./KPConv/datasets/ShapeNetPart.py` to read the point clouds from the `Data` folder.
 * Determine whether the intensity and color values are going to be fed into the model in the `./KPConv/training_ShapeNetPart.py` and `./KPConv/utils/config.py` by modifying the boolean variables `intensity_info` and `color_info`.
@@ -86,20 +86,8 @@ There are four groups of input parameters for KPConv:<br />
 
 You can find more details about the parameters, their role, and their possible values in `./KPConv/utils/config.py`<br />
 
-Input parameters and Model parameters are almost kept the same as what the author of the paper has suggested. The main parameter fine-tuning is focused on the KPConv parameters to reach the optimized kernel shape and kernel points weights and arrangement. However, the fine-tuning results shows that the default values are almost optimized already (See `./doc/report.pdf`). <br />
+Input parameters and Model parameters are almost kept the same as what the author of the paper has suggested. The main parameter fine-tuning is focused on the KPConv parameters to reach the optimized kernel shape and kernel points weights and arrangement. However, the fine-tuning results shows that the default values are almost optimized already. In this project we fine-tuned the hyper-parameters for pole part segmentation purpose with the help of wandb dashboard and increased mIoU by 2%. However, the qualitative result shows that new combination of parameters benefits some classes while worsen the predictions for others (See `./doc/report.pdf`). Therefore, the class of interest can influence the choice of our parameters <br />
 
-
-|Argument | Type or Action | Description | Default |
-|---|:---:|:---:|:---:|
-|`--batch_size`| int| `Batch size.`|  32|
-|`--device`| str| `Training device, cpu or cuda:0.`| `cpu`|
-|`--early-stopping`|  `store_true`| `Early stopping for training of sparse transformer.`| True|
-|`--epochs`| int| `Number of epochs.`| 21|
-|`--input_size`|  int| `Input size for model, i.e. the concatenation length of te, se and target.`| 99|
-|`--loss`|  str|  `Type of loss to be used during training. Options: RMSE, MAE.`|`RMSE`|
-|`--lr`|  float| `Learning rate.`| 1e-3|
-|`--train_ratio`|  float| `Percentage of the training set.`| 0.7|
-|...|...|...|...|
 
 ## Performances
 
