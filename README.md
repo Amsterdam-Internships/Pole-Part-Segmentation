@@ -61,7 +61,7 @@ After setting up the envionment, follow the steps below: <br />
 * To prepare the inference point clouds, use `Prepare_data_xyzrgbi.py`. Since, the ground truth is not available for inference dataset, we set the labels for all the points to 1. comment the line 56 and uncomment the line 59 in `./KPConv/Prepare_data_xyzrgbi.py` to do so.
 * Copy your prepared point clouds in `./KPConv/Data/test_ply` folder. 
 * Go to `./KPConv/utils/tester.py` and set the `inference` variable to `True`.
-* Assign the file path to the `chosen_log` variable in `./KPConv/test_any_model.py`
+* Assign the file path of the trained model to the `chosen_log` variable in `./KPConv/test_any_model.py`. If you want to run the inference on our pretrained models, copy `Log*` folders in the `./model` to `./KPConv/results` based on your inout features. For predicting only based on coordinare values use `Log_2022-03-14_09-05-26` and for predicting based on coordinate, intensity and color values use `Log_2022-03-19_22-04-18`. 
 * Make sure that the conda environment `(tf-gpu)` is activated.
 * Run `test_any_model.py`. 
 * The mIoU appeared on the screen has no meaning because the ground truth is unknown.  
