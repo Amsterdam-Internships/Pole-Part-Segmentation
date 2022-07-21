@@ -74,6 +74,7 @@ Kernel-point convolution, or KPConv(Thomas et al., 2019), is a deep learning alg
 * [Simplified article on how does KPConv works](https://liorhirsch.hashnode.dev/kpconv-how-does-it-work) 
 * [Useful Youtube video](https://www.youtube.com/watch?v=TvXj6RdxHfs) 
 
+You can also find related materials in my [`internship report`](./doc/report.pdf) and [`my thesis`](http://essay.utwente.nl/91777/1/Yousefimashhoor_MA_ITC.pdf)
 
 ## Parameter Setting 
 There are four groups of input parameters for KPConv:<br />
