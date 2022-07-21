@@ -71,7 +71,6 @@ After setting up the envionment, follow the steps below: <br />
 Kernel-point convolution, or KPConv(Thomas et al., 2019), is a deep learning algorithm operating directly on 3D point clouds. The main code is cloned from [KPConv GitHub repository](https://github.com/HuguesTHOMAS/KPConv). Some useful links to understand the algorithm are listed below:
 * [KPConv Paper and its supplementary materials](https://arxiv.org/abs/1904.08889) 
 * [Ph.D. Thesis of Thomas](https://pastel.archives-ouvertes.fr/tel-02458455/file/2019PSLEM048_archivage.pdf)
-* [My Thesis](http://essay.utwente.nl/91777/1/Yousefimashhoor_MA_ITC.pdf)
 * [Simplified article on how does KPConv works](https://liorhirsch.hashnode.dev/kpconv-how-does-it-work) 
 * [Useful Youtube video](https://www.youtube.com/watch?v=TvXj6RdxHfs) 
 
