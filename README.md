@@ -86,7 +86,8 @@ There are four groups of input parameters for KPConv:<br />
 
 You can find more details about the parameters, their role, and their possible values in `./KPConv/utils/config.py`<br />
 
-Input parameters and Model parameters are almost kept the same as what the author of the paper has suggested. The main parameter fine-tuning is focused on the KPConv parameters to reach the optimized kernel shape and kernel points weights and arrangement. However, the fine-tuning results shows that the default values are optimized already. <br />
+Input parameters and Model parameters are almost kept the same as what the author of the paper has suggested. The main parameter fine-tuning is focused on the KPConv parameters to reach the optimized kernel shape and kernel points weights and arrangement. However, the fine-tuning results shows that the default values are almost optimized already (See `./doc/report.pdf`). <br />
+
 
 |Argument | Type or Action | Description | Default |
 |---|:---:|:---:|:---:|
