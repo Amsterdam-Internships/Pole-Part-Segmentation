@@ -68,7 +68,9 @@ After setting up the envionment, follow the steps below: <br />
 * Find the predicted point clouds in `./KPConv/test` folder.
 
 ## How it works
-Kernel-point convolution, or KPConv(Thomas et al., 2019), is a deep learning algorithm operating directly on 3D point clouds. The main code is cloned from [KPConv GitHub repository](https://github.com/HuguesTHOMAS/KPConv). A number of useful links to understand the algorithm is listed below:
+Kernel-point convolution, or KPConv(Thomas et al., 2019), is a deep learning algorithm operating directly on 3D point clouds. The main code is cloned from [KPConv GitHub repository](https://github.com/HuguesTHOMAS/KPConv). Some useful links to understand the algorithm are listed below:
+* The [KPConv Paper](https://arxiv.org/abs/1904.08889) 
+
 
 
 
