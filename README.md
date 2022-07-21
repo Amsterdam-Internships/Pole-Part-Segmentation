@@ -28,7 +28,7 @@ The repository contains the code, dataset, trained model, and some useful resour
 A step-by-step guide to setup the environment for Ubuntu 20.04 is provided in [INSTALL.md](./INSTALL.md). <br />
 After setting up the envionment, follow the steps below:
 
-Clone this repository:
+1.Clone this repository:
     ```bash
     git clone https://github.com/Amsterdam-Internships/InternshipAmsterdamGeneral
     ```
