@@ -47,7 +47,7 @@ After setting up the envionment, follow the steps below:
 
 #### If you are runnning on our provided dataset: <br />
 
-2) Copy the folders inside the `data` folder to `./KPConv/Data`
+2) Copy the folders inside the [`data`](https://drive.google.com/file/d/1nd5KL_dtK9fzQisFcb0sMufKO2F8tIV9/view?usp=sharing) folder to `./KPConv/Data`
 3) Modify the `self.path` variable in the `./KPConv/datasets/ShapeNetPart.py` folder to read the point clouds from the `Data` folder.
 4) Determine whether the intensity and color values are going to be fed into the model in the `./KPConv/training_ShapeNetPart.py` and `./KPConv/utils/config.py` by modifying the variables `intensity_info` and `color_info`.
 5) If you want to use [wandb](https://wandb.ai/home) dashboard to trace your experiment, install `wandb` package using `pip` installer. Also,uncomment lines related to `wandb` in the `imports and global variables` section in `./KPConv/training_ShapeNetPart.py` and fill your account information to use the dashboard. Then, uncomment wandb commands in the `./KPConv/utils/trainer.py`.
